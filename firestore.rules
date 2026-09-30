@@ -1,0 +1,73 @@
+rules_version = '2';
+
+service cloud.firestore {
+
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+
+    // USERS
+    match /users/{userId} {
+
+      // A user can create their own profile,
+      // but it MUST start as unverified.
+      allow create: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.verified == false;
+
+
+      // A user can read their own profile.
+      allow read: if signedIn()
+        && request.auth.uid == userId;
+
+
+      // A normal user cannot change their
+      // verification status to true.
+      allow update: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.verified == false;
+
+
+      allow delete: if false;
+    }
+
+
+    // ANIMAL SIGHTINGS
+    match /sightings/{sightingId} {
+
+      // Signed-in users can view sightings.
+      allow read: if signedIn();
+
+
+      // Only verified users can create sightings.
+      allow create: if signedIn()
+        && get(
+          /databases/$(database)/documents/users/$(request.auth.uid)
+        ).data.verified == true;
+
+
+      allow update, delete: if false;
+    }
+
+
+    // CHAT MESSAGES
+    match /messages/{messageId} {
+
+      // Anyone can read chat messages.
+      allow read: if true;
+
+
+      // Only verified users can create messages.
+      allow create: if signedIn()
+        && get(
+          /databases/$(database)/documents/users/$(request.auth.uid)
+        ).data.verified == true;
+
+
+      allow update, delete: if false;
+    }
+  }
+}

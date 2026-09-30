@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in - Animal Sightings</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="index.html">Animal Sightings</a></header>
+  <main class="container narrow">
+    <section class="card auth-card">
+      <h1>Sign in</h1>
+      <p class="muted">Use your Firebase account.</p>
+      <form id="loginForm">
+        <label>Email<input id="email" type="email" required></label>
+        <label>Password<input id="password" type="password" required></label>
+        <button class="button" type="submit">Sign in</button>
+      </form>
+      <p id="loginMessage" class="message"></p>
+      <hr>
+      <h2>Create account</h2>
+      <form id="signupForm">
+        <label>Email<input id="signupEmail" type="email" required></label>
+        <label>Password<input id="signupPassword" type="password" minlength="6" required></label>
+        <button class="button secondary" type="submit">Sign up</button>
+      </form>
+      <p id="signupMessage" class="message"></p>
+    </section>
+  </main>
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

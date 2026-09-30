@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Chat - Animal Sightings</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+
+    <div class="container nav-container">
+
+      <h2>Animal Sightings</h2>
+
+      <nav class="main-nav">
+        <a href="index.html">Dashboard</a>
+        <a href="device/index.html">Device</a>
+        <a href="chat.html">Chat</a>
+        <a href="login.html">Account</a>
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <main class="container">
+
+    <section class="card">
+
+      <h1>Verified Chat</h1>
+
+      <div id="chatStatus">
+        Checking access...
+      </div>
+
+
+      <div
+        id="chatContent"
+        style="display: none;"
+      >
+
+        <div
+          id="messages"
+          style="
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: white;
+          "
+        >
+          Loading messages...
+        </div>
+
+
+        <form id="chatForm">
+
+          <input
+            type="text"
+            id="message"
+            placeholder="Type your message..."
+            autocomplete="off"
+            required
+            style="
+              width: 100%;
+              max-width: 600px;
+              padding: 10px;
+              box-sizing: border-box;
+            "
+          >
+
+          <br><br>
+
+          <button type="submit">
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script type="module" src="js/chat.js"></script>
+
+</body>
+
+</html>
