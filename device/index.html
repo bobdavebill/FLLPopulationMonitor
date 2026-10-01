@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Device - Animal Sightings</title>
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+
+```
+<div class="container nav-container">
+
+  <h2>Animal Sightings</h2>
+
+  <nav class="main-nav">
+    <a href="../index.html">Dashboard</a>
+    <a href="index.html">Device</a>
+    <a href="../chat.html">Chat</a>
+    <a href="../login.html">Account</a>
+  </nav>
+
+</div>
+```
+
+  </header>
+
+  <main class="container">
+
+```
+<section class="card">
+
+  <h1>Device Console</h1>
+
+  <p id="deviceStatus">
+    Checking account access...
+  </p>
+
+
+  <div
+    id="deviceContent"
+    style="display: none;"
+  >
+
+    <h2>Teachable Machine</h2>
+
+    <p>
+      Enter the URL of your Teachable Machine image model.
+    </p>
+
+
+    <input
+      type="url"
+      id="modelUrl"
+      placeholder="https://teachablemachine.withgoogle.com/models/..."
+      autocomplete="off"
+      style="
+        width: 100%;
+        max-width: 650px;
+        padding: 12px;
+        box-sizing: border-box;
+      "
+    >
+
+
+    <div style="margin-top: 15px;">
+
+      <button
+        type="button"
+        id="loadModelButton"
+      >
+        Load Model
+      </button>
+
+
+      <button
+        type="button"
+        id="startCameraButton"
+        disabled
+      >
+        Start Camera
+      </button>
+
+    </div>
+
+
+    <p id="modelStatus">
+      No model loaded.
+    </p>
+
+
+    <div
+      style="
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+      "
+    >
+
+      <div
+        id="webcam-container"
+        style="
+          width: 400px;
+          max-width: 100%;
+          min-height: 200px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #f3f3f3;
+          border: 1px solid #ddd;
+        "
+      >
+        <span>
+          Camera not started
+        </span>
+      </div>
+
+    </div>
+
+
+    <div
+      id="prediction"
+      style="
+        margin-top: 20px;
+        padding: 18px;
+        border: 1px solid #ddd;
+        background: #f8f8f8;
+        text-align: center;
+      "
+    >
+
+      <strong>Detected animal:</strong>
+      Waiting for camera...
+
+    </div>
+
+
+    <div
+      id="observationStatus"
+      style="
+        margin-top: 15px;
+        padding: 12px;
+        border: 1px solid #ddd;
+      "
+    >
+
+      No observation recorded yet.
+
+    </div>
+
+
+    <hr style="margin: 30px 0;">
+
+
+    <h2>Manual Observation</h2>
+
+    <p>
+      Use these buttons to manually record an observation.
+    </p>
+
+
+    <div
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      "
+    >
+
+      <button
+        type="button"
+        onclick="recordSighting('Kangaroo')"
+      >
+        Record Kangaroo
+      </button>
+
+
+      <button
+        type="button"
+        onclick="recordSighting('Wallaby')"
+      >
+        Record Wallaby
+      </button>
+
+
+      <button
+        type="button"
+        onclick="recordSighting('Possum')"
+      >
+        Record Possum
+      </button>
+
+
+      <button
+        type="button"
+        onclick="recordSighting('Koala')"
+      >
+        Record Koala
+      </button>
+
+    </div>
+
+
+    <hr style="margin: 30px 0;">
+
+
+    <h2>How it works</h2>
+
+    <ol>
+
+      <li>
+        Load your Teachable Machine model.
+      </li>
+
+      <li>
+        Start the camera.
+      </li>
+
+      <li>
+        The model identifies the animal.
+      </li>
+
+      <li>
+        Predictions above the confidence threshold
+        are automatically saved as sightings.
+      </li>
+
+      <li>
+        Manual buttons can be used as a backup.
+      </li>
+
+    </ol>
+
+  </div>
+
+</section>
+```
+
+  </main>
+
+  <!-- TensorFlow.js -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"
+  ></script>
+
+  <!-- Teachable Machine Image Library -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.3/dist/teachablemachine-image.min.js"
+  ></script>
+
+  <!-- Firebase / Device JavaScript -->
+
+  <script
+    type="module"
+    src="../js/device.js"
+  ></script>
+
+</body>
+
+</html>
